@@ -1908,11 +1908,13 @@
             rWingMain.castShadow = true;
             carGroup.add(rWingMain);
 
-            // DRS flap
+            // DRS flap - stored for animation
             const drsFlap = new THREE.Mesh(new THREE.BoxGeometry(1.4, 0.03, 0.12), bodyMat);
             drsFlap.position.set(0, 0.66, -2.05);
-            drsFlap.rotation.x = -0.2;
+            drsFlap.rotation.x = -0.2; // Closed position
+            drsFlap.name = 'drsFlap';
             carGroup.add(drsFlap);
+            carGroup.userData.drsFlap = drsFlap; // Store reference for animation
 
             // Beam wing (lower element)
             const beamWing = new THREE.Mesh(new THREE.BoxGeometry(0.8, 0.03, 0.08), carbonMat);
@@ -3165,6 +3167,17 @@
 
         let lastFrameTime = performance.now();
 
+        // ============ DRS FLAP ANIMATION ============
+        function updateDRSFlap() {
+            if (!carMesh || !carMesh.userData.drsFlap) return;
+
+            const drsFlap = carMesh.userData.drsFlap;
+            const targetRotation = state.boostActive ? 0.5 : -0.2; // Open when boost active
+
+            // Smooth interpolation for realistic flap movement
+            drsFlap.rotation.x += (targetRotation - drsFlap.rotation.x) * 0.15;
+        }
+
         function animate() {
             requestAnimationFrame(animate);
 
@@ -3182,6 +3195,9 @@
             updateEngineSound();
             updateTireSound();
 
+            // DRS flap animation
+            updateDRSFlap();
+
             // Tire system
             updateTireWear();
             checkPitLane();
@@ -3195,6 +3211,7 @@
 
             renderer.render(scene, camera);
         }
+
 
         init();
     </script>
