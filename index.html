@@ -228,6 +228,285 @@
             background: linear-gradient(90deg, #ffff00, #00ff00);
             box-shadow: 0 0 10px #00ff00;
         }
+
+        /* Race Setup Menu */
+        #race-menu {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: rgba(0, 0, 0, 0.95);
+            border: 3px solid #ffcc00;
+            border-radius: 20px;
+            padding: 30px 40px;
+            z-index: 100;
+            text-align: center;
+            min-width: 350px;
+        }
+
+        #race-menu h2 {
+            color: #ffcc00;
+            margin: 0 0 20px 0;
+            font-size: 28px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .menu-section {
+            margin: 20px 0;
+        }
+
+        .menu-section label {
+            color: #aaa;
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        .menu-options {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .menu-btn {
+            background: rgba(255, 255, 255, 0.1);
+            border: 2px solid #555;
+            color: #fff;
+            padding: 12px 20px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: all 0.2s;
+            min-width: 60px;
+        }
+
+        .menu-btn:hover {
+            border-color: #ffcc00;
+            background: rgba(255, 204, 0, 0.2);
+        }
+
+        .menu-btn.selected {
+            border-color: #ffcc00;
+            background: rgba(255, 204, 0, 0.3);
+            color: #ffcc00;
+        }
+
+        #start-race-btn {
+            background: linear-gradient(135deg, #ffcc00, #ff9900);
+            border: none;
+            color: #000;
+            padding: 15px 40px;
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: 18px;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-top: 25px;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        #start-race-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 20px rgba(255, 204, 0, 0.5);
+        }
+
+        /* Tire Health Gauge */
+        #tire-container {
+            position: absolute;
+            bottom: 100px;
+            left: 20px;
+            background: rgba(0, 0, 0, 0.8);
+            border: 2px solid #444;
+            border-radius: 10px;
+            padding: 12px 15px;
+            pointer-events: none;
+        }
+
+        #tire-label {
+            font-size: 12px;
+            text-transform: uppercase;
+            color: #aaa;
+            letter-spacing: 1px;
+            margin-bottom: 8px;
+            text-align: center;
+        }
+
+        .tire-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 6px;
+        }
+
+        .tire-indicator {
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            border: 3px solid #333;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .tire-fill {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(to top, #00ff00, #88ff00);
+            transition: height 0.3s, background 0.3s;
+        }
+
+        .tire-indicator.warning .tire-fill {
+            background: linear-gradient(to top, #ffaa00, #ffcc00);
+        }
+
+        .tire-indicator.critical .tire-fill {
+            background: linear-gradient(to top, #ff0000, #ff4400);
+            animation: tire-pulse 0.5s infinite;
+        }
+
+        .tire-indicator.burst {
+            border-color: #ff0000;
+            background: #330000;
+        }
+
+        @keyframes tire-pulse {
+
+            0%,
+            100% {
+                opacity: 1;
+            }
+
+            50% {
+                opacity: 0.5;
+            }
+        }
+
+        /* Pit Lane Indicator */
+        #pit-indicator {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: rgba(0, 150, 255, 0.9);
+            color: #fff;
+            padding: 15px 30px;
+            border-radius: 10px;
+            font-size: 20px;
+            font-weight: bold;
+            display: none;
+            z-index: 50;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            animation: pit-flash 0.5s infinite;
+        }
+
+        @keyframes pit-flash {
+
+            0%,
+            100% {
+                opacity: 1;
+            }
+
+            50% {
+                opacity: 0.7;
+            }
+        }
+
+        #pit-indicator.changing {
+            background: rgba(0, 200, 100, 0.9);
+        }
+
+        /* Tire Warning Overlay */
+        #tire-warning {
+            position: absolute;
+            top: 120px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(255, 50, 0, 0.9);
+            color: #fff;
+            padding: 10px 25px;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: bold;
+            display: none;
+            z-index: 40;
+            text-transform: uppercase;
+            animation: warning-pulse 0.8s infinite;
+        }
+
+        @keyframes warning-pulse {
+
+            0%,
+            100% {
+                transform: translateX(-50%) scale(1);
+            }
+
+            50% {
+                transform: translateX(-50%) scale(1.05);
+            }
+        }
+
+        .menu-note {
+            color: #888;
+            font-size: 12px;
+            margin-top: 5px;
+            font-style: italic;
+        }
+
+        /* Pit Notifications Log */
+        #pit-log {
+            position: absolute;
+            top: 80px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(0, 0, 0, 0.8);
+            border: 2px solid #0099ff;
+            border-radius: 8px;
+            padding: 10px 20px;
+            color: #fff;
+            font-size: 14px;
+            min-width: 200px;
+            max-width: 300px;
+            text-align: center;
+            z-index: 30;
+            display: none;
+        }
+
+        #pit-log.visible {
+            display: block;
+        }
+
+        .pit-message {
+            padding: 4px 0;
+            animation: pit-msg-fade 4s forwards;
+        }
+
+        .pit-message.entering {
+            color: #ffcc00;
+        }
+
+        .pit-message.leaving {
+            color: #00ff88;
+        }
+
+        @keyframes pit-msg-fade {
+            0% {
+                opacity: 1;
+            }
+
+            70% {
+                opacity: 1;
+            }
+
+            100% {
+                opacity: 0;
+            }
+        }
     </style>
 </head>
 
@@ -245,7 +524,8 @@
             <span class="key-hint">SHIFT</span> DRS Boost<br>
             <hr style="border: 0; border-top: 1px solid rgba(255,255,255,0.3); margin: 8px 0;">
             <span class="key-hint">E</span> Shift Up (+)<br>
-            <span class="key-hint">R</span> Shift Down (-)
+            <span class="key-hint">R</span> Shift Down (-)<br>
+            <span class="key-hint">P</span> Pit Stop (in pit lane)
         </div>
 
         <!-- Boost bar -->
@@ -279,6 +559,61 @@
 
         <!-- Speed lines effect -->
         <div id="speed-lines"></div>
+
+        <!-- Race Setup Menu -->
+        <div id="race-menu">
+            <h2>🏎️ Race Setup</h2>
+
+            <div class="menu-section">
+                <label>Race Distance</label>
+                <div class="menu-options" id="lap-options">
+                    <button class="menu-btn" data-laps="5">5 Laps</button>
+                    <button class="menu-btn selected" data-laps="10">10 Laps</button>
+                    <button class="menu-btn" data-laps="15">15 Laps</button>
+                    <button class="menu-btn" data-laps="20">20 Laps</button>
+                </div>
+                <div class="menu-note" id="tire-note">Tire wear affects speed. No tire burst risk.</div>
+            </div>
+
+            <div class="menu-section">
+                <label>AI Difficulty</label>
+                <div class="menu-options" id="diff-options">
+                    <button class="menu-btn" data-diff="easy">Easy</button>
+                    <button class="menu-btn selected" data-diff="medium">Medium</button>
+                    <button class="menu-btn" data-diff="hard">Hard</button>
+                </div>
+            </div>
+
+            <button id="start-race-btn">Start Race</button>
+        </div>
+
+        <!-- Tire Health Gauge -->
+        <div id="tire-container">
+            <div id="tire-label">TIRES</div>
+            <div class="tire-grid">
+                <div class="tire-indicator" id="tire-fl">
+                    <div class="tire-fill" style="height: 100%"></div>
+                </div>
+                <div class="tire-indicator" id="tire-fr">
+                    <div class="tire-fill" style="height: 100%"></div>
+                </div>
+                <div class="tire-indicator" id="tire-rl">
+                    <div class="tire-fill" style="height: 100%"></div>
+                </div>
+                <div class="tire-indicator" id="tire-rr">
+                    <div class="tire-fill" style="height: 100%"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Pit Lane Indicator -->
+        <div id="pit-indicator">PIT LANE - HOLD P TO PIT</div>
+
+        <!-- Tire Warning -->
+        <div id="tire-warning">⚠️ TIRE CRITICAL - PIT NOW!</div>
+
+        <!-- Pit Log -->
+        <div id="pit-log"></div>
     </div>
 
     <script>
@@ -286,24 +621,28 @@
             maxSpeed: 180,
             accel: 0.14,           // Faster acceleration
             friction: 0.988,       // Better grip
-            turnSpeed: 0.048,
-            cameraHeight: 0.9,
-            cameraDistance: 1.4,
+            turnSpeed: 0.044,
+            cameraHeight: 1.3,     // Raised to see over rear wing
+            cameraDistance: 2.0,   // Moved back for better view
             trackWidth: 30,
             wallHeight: 1.5,
             lapsToWin: 10,
-            drsCooldownTime: 3000  // 3 seconds cooldown in ms
+            drsCooldownTime: 3000, // 3 seconds cooldown in ms
+            // Tire system
+            tireWearRate: 0.008,   // Base tire wear per frame when moving
+            tireBurstEnabled: false, // Enabled for 15+ lap races
+            pitStopTime: 3000      // 3 seconds for pit stop
         };
 
         const GEAR_LIMITS = [0, 40, 70, 95, 120, 150, 180, 200];
 
         let AI_DIFFICULTY = 'medium'; // easy | medium | hard
 
-        // Balanced AI speeds - all cars similar speed to stay together
+        // Different AI speeds for variety
         const AI_SPEEDS = {
-            easy: [0.00095, 0.00095, 0.00095],
-            medium: [0.00115, 0.00115, 0.00115],
-            hard: [0.00135, 0.00135, 0.00135]
+            easy: [0.00090, 0.00095, 0.00085],
+            medium: [0.00100, 0.00105, 0.00095],
+            hard: [0.00110, 0.00115, 0.00105]
         };
 
         const state = {
@@ -312,7 +651,7 @@
             angle: 0,
             pos: new THREE.Vector3(0, 0, 0),
             velocity: new THREE.Vector3(0, 0, 0),
-            keys: { w: false, a: false, s: false, d: false, space: false, shift: false },
+            keys: { w: false, a: false, s: false, d: false, space: false, shift: false, p: false },
             lap: 0,
             lapStartTime: 0,
             checkpoints: [],
@@ -327,7 +666,20 @@
             boostEnergy: 100,        // 0-100
             boostActive: false,
             boostCooldown: false,
-            drsCooldownEndTime: 0    // Timestamp when cooldown ends
+            drsCooldownEndTime: 0,   // Timestamp when cooldown ends
+            // Tire health system (100 = new, 0 = burst)
+            tireHealth: {
+                fl: 100,  // Front Left
+                fr: 100,  // Front Right
+                rl: 100,  // Rear Left
+                rr: 100   // Rear Right
+            },
+            // Pit lane system
+            inPitLane: false,
+            isPitting: false,
+            pitStartTime: 0,
+            tireBurst: false,
+            pitLaneZone: null  // Will be set when building track
         };
 
         // Skid marks array
@@ -924,7 +1276,14 @@
             // Create barriers along the track
             const barrierHeight = 1.2;
             const barrierWidth = 1.5;
-            const barrierSpacing = 8;
+
+            // Define Pit Lane Gap Zone (World Coordinates)
+            const isBlockingPit = (p) => {
+                // Pit lane is on the positive X side (approx x > 5)
+                // Zone: z between -140 and 80 covers the entry and exit
+                if (p.x < 5) return false;
+                return (p.z >= -140 && p.z <= 80);
+            };
 
             for (let i = 0; i < state.trackPoints.length; i += Math.floor(state.trackPoints.length / 80)) {
                 const pt = state.trackPoints[i];
@@ -934,41 +1293,44 @@
                 const dir = new THREE.Vector3().subVectors(nextPt, pt).normalize();
                 const perpendicular = new THREE.Vector3(-dir.z, 0, dir.x);
 
-                // Left barrier
-                const leftBarrier = new THREE.Mesh(
-                    new THREE.BoxGeometry(barrierWidth, barrierHeight, 3),
-                    (i % 2 === 0) ? barrierMat : barrierAccentMat
-                );
-                leftBarrier.position.copy(pt);
-                leftBarrier.position.addScaledVector(perpendicular, -(CONFIG.trackWidth / 2 + 2));
-                leftBarrier.position.y = barrierHeight / 2;
-                leftBarrier.lookAt(leftBarrier.position.clone().add(dir));
-                leftBarrier.castShadow = true;
-                leftBarrier.receiveShadow = true;
-                scene.add(leftBarrier);
+                // Check Left Barrier
+                const leftPos = pt.clone().addScaledVector(perpendicular, -(CONFIG.trackWidth / 2 + 2));
+                if (!isBlockingPit(leftPos)) {
+                    const leftBarrier = new THREE.Mesh(
+                        new THREE.BoxGeometry(barrierWidth, barrierHeight, 3),
+                        (i % 2 === 0) ? barrierMat : barrierAccentMat
+                    );
+                    leftBarrier.position.copy(leftPos);
+                    leftBarrier.position.y = barrierHeight / 2;
+                    leftBarrier.lookAt(leftBarrier.position.clone().add(dir));
+                    leftBarrier.castShadow = true;
+                    leftBarrier.receiveShadow = true;
+                    scene.add(leftBarrier);
+                }
 
-                // Right barrier
-                const rightBarrier = new THREE.Mesh(
-                    new THREE.BoxGeometry(barrierWidth, barrierHeight, 3),
-                    (i % 2 === 0) ? barrierAccentMat : barrierMat
-                );
-                rightBarrier.position.copy(pt);
-                rightBarrier.position.addScaledVector(perpendicular, (CONFIG.trackWidth / 2 + 2));
-                rightBarrier.position.y = barrierHeight / 2;
-                rightBarrier.lookAt(rightBarrier.position.clone().add(dir));
-                rightBarrier.castShadow = true;
-                rightBarrier.receiveShadow = true;
-                scene.add(rightBarrier);
+                // Check Right Barrier
+                const rightPos = pt.clone().addScaledVector(perpendicular, (CONFIG.trackWidth / 2 + 2));
+                if (!isBlockingPit(rightPos)) {
+                    const rightBarrier = new THREE.Mesh(
+                        new THREE.BoxGeometry(barrierWidth, barrierHeight, 3),
+                        (i % 2 === 0) ? barrierAccentMat : barrierMat
+                    );
+                    rightBarrier.position.copy(rightPos);
+                    rightBarrier.position.y = barrierHeight / 2;
+                    rightBarrier.lookAt(rightBarrier.position.clone().add(dir));
+                    rightBarrier.castShadow = true;
+                    rightBarrier.receiveShadow = true;
+                    scene.add(rightBarrier);
+                }
             }
 
             // === DETAILED TREES ===
-            // Increase safe distance significantly to keep trees away from track
-            const safeDistance = (CONFIG.trackWidth / 2) + 35;  // Much larger safe zone
+            const safeDistance = (CONFIG.trackWidth / 2) + 35;
 
             function createDetailedTree(x, z, scale) {
                 const treeGroup = new THREE.Group();
 
-                // Tree trunk (brown cylinder)
+                // Tree trunk
                 const trunkHeight = 3 * scale;
                 const trunkRadius = 0.4 * scale;
                 const trunkGeom = new THREE.CylinderGeometry(trunkRadius * 0.7, trunkRadius, trunkHeight, 8);
@@ -978,7 +1340,7 @@
                 trunk.castShadow = true;
                 treeGroup.add(trunk);
 
-                // Multiple foliage layers for realistic look
+                // Foliage
                 const foliageColors = [0x1a5c1a, 0x0d4d0d, 0x228b22, 0x2d5a27];
                 const foliageLayers = 3 + Math.floor(Math.random() * 2);
 
@@ -1002,13 +1364,12 @@
                 return treeGroup;
             }
 
-            // Place trees with proper spacing and varied sizes
-            for (let i = 0; i < 400; i++) {  // Reduced count slightly for performance
+            // Place trees
+            for (let i = 0; i < 400; i++) {
                 const x = (Math.random() - 0.5) * 3000;
                 const z = (Math.random() - 0.5) * 3000;
 
                 let tooClose = false;
-                // Check ALL track points, not just every 15th, for better accuracy
                 for (let j = 0; j < state.trackPoints.length; j += 5) {
                     const dx = x - state.trackPoints[j].x;
                     const dz = z - state.trackPoints[j].z;
@@ -1019,13 +1380,12 @@
                 }
                 if (tooClose) continue;
 
-                // Varied tree sizes
-                const scale = 0.8 + Math.random() * 0.8;  // 0.8 to 1.6 scale
+                const scale = 0.8 + Math.random() * 0.8;
                 const tree = createDetailedTree(x, z, scale);
                 scene.add(tree);
             }
 
-            // Add some smaller bushes near (but not on) the track for decoration
+            // Add bushes
             const bushGeom = new THREE.SphereGeometry(1.5, 8, 6);
             const bushMat = new THREE.MeshLambertMaterial({ color: 0x2d5a27 });
 
@@ -1038,7 +1398,6 @@
                     const dx = x - state.trackPoints[j].x;
                     const dz = z - state.trackPoints[j].z;
                     const dist = Math.sqrt(dx * dx + dz * dz);
-                    // Bushes can be closer but still safe (between 25-40 units from track center)
                     if (dist < (CONFIG.trackWidth / 2) + 25) {
                         tooClose = true;
                         break;
@@ -1057,9 +1416,9 @@
         let trackCurve;
 
         function buildTrack() {
-            // Simple oval-style track with very wide, gradual turns only
+            // NASCAR-style oval track with two long straights and wide sweeping turns
             const points = [
-                // Long start/finish straight
+                // Front straight (start/finish)
                 new THREE.Vector3(0, 0, 0),
                 new THREE.Vector3(0, 0, -50),
                 new THREE.Vector3(0, 0, -100),
@@ -1067,7 +1426,7 @@
                 new THREE.Vector3(0, 0, -200),
                 new THREE.Vector3(0, 0, -250),
 
-                // Turn 1 - very wide 180-degree LEFT (many points for smoothness)
+                // Turn 1 - Wide 180-degree LEFT turn
                 new THREE.Vector3(-20, 0, -300),
                 new THREE.Vector3(-50, 0, -340),
                 new THREE.Vector3(-100, 0, -370),
@@ -1087,7 +1446,7 @@
                 new THREE.Vector3(-380, 0, 50),
                 new THREE.Vector3(-380, 0, 100),
 
-                // Turn 2 - very wide 180-degree LEFT back (many points for smoothness)
+                // Turn 2 - Wide 180-degree LEFT turn back
                 new THREE.Vector3(-360, 0, 150),
                 new THREE.Vector3(-330, 0, 190),
                 new THREE.Vector3(-280, 0, 220),
@@ -1149,9 +1508,27 @@
                 for (let j = 0; j < profile.length; j++) {
                     const prof = profile[j];
 
+                    let currentY = prof.y;
+
+                    // CHECK FOR PIT LANE GAP ZONE
+                    // If we are in the pit zone, FLATTEN the right wall
+                    // Pit zone is on positive X side (approx > 5), Z between -140 and 80
+                    // Profile indices 4 and 5 are the right wall (Inner Right Wall Top, Outer Right Wall Top)
+                    if ((j === 4 || j === 5) && currentY > 0) {
+                        // Check position 
+                        // Note: P is the center line point.
+                        // But for simplicity, we adhere to the global pit zone def:
+                        // Z between -140 and 80.
+                        // We also check P.x to ensure we are on the main straight approx x=0
+                        // Actually, just checking Z on main straight is enough as main straight is unique in Z range.
+                        if (P.z >= -140 && P.z <= 80 && Math.abs(P.x) < 20) {
+                            currentY = 0; // Flatten!
+                        }
+                    }
+
                     Temp.copy(P);
                     Temp.addScaledVector(B, prof.x);
-                    Temp.addScaledVector(N, prof.y);
+                    Temp.addScaledVector(N, currentY); // Use modified Y
 
                     verts.push(Temp.x, Temp.y, Temp.z);
                     uvs.push(prof.u, t * 60);
@@ -1683,16 +2060,20 @@
             return carGroup;
         }
 
-        // Grid positions - Player starts at back (P4)
-        const GRID_POSITIONS = [
-            { name: 'CAR 1', x: -4, z: -42 },   // P1 - Front left
-            { name: 'CAR 2', x: 4, z: -46 },    // P2 - Front right
-            { name: 'CAR 3', x: -4, z: -50 },   // P3 - Middle left
-            { name: 'YOU', x: 4, z: -66 }       // P4 - Back right (LAST)
-        ];
+        // Grid positions - Generated for 15 cars (Player starts at back P15)
+        // Cars face -Z direction and race toward lower Z values
+        // P1 should be at lowest Z (front), P15 at highest Z (back)
+        const GRID_POSITIONS = [];
+        for (let i = 0; i < 15; i++) {
+            GRID_POSITIONS.push({
+                name: i === 14 ? 'YOU' : `CAR ${i + 1}`,
+                x: i % 2 === 0 ? -4 : 4,  // Alternate left/right
+                z: -122 + (i * 8)          // P1 at z=-122, P15 at z=-10 (player at back)
+            });
+        }
 
         function positionPlayerOnGrid() {
-            const slot = GRID_POSITIONS[3];
+            const slot = GRID_POSITIONS[14]; // Player is last (P15)
             carMesh.position.set(slot.x, 0.5, slot.z);
             state.angle = Math.PI; // Face -Z direction
             carMesh.rotation.y = state.angle;
@@ -1712,35 +2093,50 @@
         }
 
         function createAICars() {
-            const colors = [0x0000ff, 0x00ff00, 0xffff00];
             const speeds = AI_SPEEDS[AI_DIFFICULTY] || AI_SPEEDS.medium;
-            const baseSpeed = speeds[0]; // All AI same base speed
+            const now = Date.now();
 
-            for (let i = 0; i < colors.length; i++) {
-                const mesh = createCarMesh(colors[i]);
+            // Create 14 AI cars (total 15 including player)
+            for (let i = 0; i < 14; i++) {
+                // Generate unique color for each car using golden angle
+                const hue = (i * 137.5) % 360;
+                const color = new THREE.Color(`hsl(${hue}, 80%, 50%)`);
+
+                const mesh = createCarMesh(color.getHex());
                 scene.add(mesh);
 
                 const slot = GRID_POSITIONS[i];
                 mesh.position.set(slot.x, 0.5, slot.z);
                 mesh.rotation.y = Math.PI;
 
+                // Cycle through speed profiles for variety
+                const baseSpeed = speeds[i % speeds.length];
+
                 state.aiCars.push({
                     mesh,
                     t: 0,
-                    baseSpeed: baseSpeed,       // Base speed for all
-                    speed: baseSpeed,            // Current speed (can boost)
+                    baseSpeed: baseSpeed,
+                    speed: baseSpeed,
                     lateralOffset: slot.x,
                     lap: 0,
-                    // DRS system for AI
                     drsActive: false,
-                    drsEnergy: 100,
-                    drsCooldown: false,
-                    drsCooldownEnd: 0
+                    lastDrsTime: now + (i * 500),  // Stagger DRS timing
+                    drsDuration: 1500
                 });
             }
         }
 
+
         function checkCollisionWalls() {
+            // Skip wall collision if car is in or near pit lane
+            const isNearPitEntry = carMesh.position.z <= PIT_LANE.entryZ + 10 &&
+                carMesh.position.z >= PIT_LANE.exitZ - 10 &&
+                carMesh.position.x >= 10;
+
+            if (isNearPitEntry || isInPitLane(carMesh.position.x, carMesh.position.z)) {
+                return; // Allow free movement in pit area
+            }
+
             let closestDistSq = Infinity;
             let closestPoint = null;
 
@@ -1752,12 +2148,27 @@
                 }
             }
 
-            if (closestDistSq > (CONFIG.trackWidth / 2 - 1.5) ** 2) {
-                const pushDir = new THREE.Vector3().subVectors(closestPoint, carMesh.position).normalize();
-                carMesh.position.add(pushDir.multiplyScalar(0.5));
-                playImpactSound(Math.abs(state.speed) * 0.5); // Wall impact sound
-                emitWallSparks(carMesh.position.clone()); // Spark particles
-                state.speed *= 0.5;
+            const maxDist = CONFIG.trackWidth / 2 - 1.5;
+            const currentDist = Math.sqrt(closestDistSq);
+
+            // If car is outside track bounds, force it back
+            if (currentDist > maxDist) {
+                const pushDir = new THREE.Vector3().subVectors(closestPoint, carMesh.position);
+                pushDir.y = 0;
+                pushDir.normalize();
+
+                // Calculate how far past the boundary the car is
+                const overshoot = currentDist - maxDist;
+
+                // Push car back by the full overshoot amount plus a bit extra
+                carMesh.position.add(pushDir.multiplyScalar(overshoot + 0.5));
+                carMesh.position.y = 0.5;
+
+                playImpactSound(Math.abs(state.speed) * 0.5);
+                emitWallSparks(carMesh.position.clone());
+
+                // Stronger speed penalty
+                state.speed *= 0.4;
             }
         }
 
@@ -1772,12 +2183,17 @@
                 const dist = tmp.distanceTo(playerPos);
                 if (dist < minDist) {
                     normal.subVectors(playerPos, tmp).normalize();
+                    normal.y = 0; // Don't push in Y direction
                     const overlap = minDist - dist;
 
                     playerPos.addScaledVector(normal, overlap * 0.6);
                     car.mesh.position.addScaledVector(normal, -overlap * 0.4);
 
-                    playImpactSound(Math.abs(state.speed) * 0.8); // Car collision sound
+                    // Keep cars at correct height
+                    playerPos.y = 0.5;
+                    car.mesh.position.y = 0.5;
+
+                    playImpactSound(Math.abs(state.speed) * 0.8);
                     state.speed *= 0.4;
                     car.speed *= 0.9;
                 }
@@ -1787,13 +2203,22 @@
         function handleInput() {
             if (!state.gameActive) return;
 
+            // Prevent movement during pit stop
+            if (state.isPitting) {
+                state.speed = 0;
+                return;
+            }
+
+            // Apply tire speed penalty
+            const tirePenalty = getTireSpeedPenalty();
+
             const gearLimitKmh = GEAR_LIMITS[state.currentGear];
-            const gearLimitUnit = gearLimitKmh / 80;
+            const gearLimitUnit = (gearLimitKmh / 80) * tirePenalty;
 
             if (state.keys.w) {
                 if (state.speed < gearLimitUnit) {
                     const accelFactor = 1 - (Math.abs(state.speed) / (200 / 80));
-                    state.speed += CONFIG.accel * Math.max(0.2, accelFactor);
+                    state.speed += CONFIG.accel * Math.max(0.2, accelFactor) * tirePenalty;
                 }
             } else {
                 state.speed *= CONFIG.friction;
@@ -1809,45 +2234,47 @@
 
             if (state.keys.space) state.speed *= 0.85;
 
-            // DRS Boost logic with 3-second cooldown
-            const now = Date.now();
+            // DRS Boost logic - "use all or nothing" system
+            // Once activated, stays on until bar is empty
+            // Cannot use again until bar is fully recharged to 100%
 
-            // Check if cooldown has expired
-            if (state.boostCooldown && now >= state.drsCooldownEndTime) {
-                state.boostCooldown = false;
-            }
-
-            if (state.keys.shift && state.boostEnergy > 10 && !state.boostCooldown) {
-                state.boostActive = true;
-                state.boostEnergy -= 0.8; // Drains faster
+            if (state.boostActive) {
+                // Boost is active - keep draining until empty
+                state.boostEnergy -= 0.8;
 
                 // Boost gives extra acceleration and higher speed limit
                 if (state.speed < (CONFIG.maxSpeed / 80) * 1.25) {
                     state.speed += CONFIG.accel * 0.6;
                 }
-            } else {
-                state.boostActive = false;
 
-                // Recharge boost when not using and not in cooldown
-                if (!state.boostCooldown && state.boostEnergy < 100) {
-                    state.boostEnergy += 0.35; // Faster recharge
-                }
-
-                // Trigger 3-second cooldown when depleted
-                if (state.boostEnergy <= 10 && !state.boostCooldown) {
-                    state.boostCooldown = true;
-                    state.drsCooldownEndTime = now + CONFIG.drsCooldownTime;
+                // Stop boost when depleted
+                if (state.boostEnergy <= 0) {
                     state.boostEnergy = 0;
+                    state.boostActive = false;
+                    state.boostCooldown = true; // Must wait for full recharge
                 }
-            }
+            } else if (state.boostCooldown) {
+                // Recharging after depletion - cannot use until full (~8 seconds)
+                state.boostEnergy += 0.21;
 
-            // Recharge during cooldown (slowly)
-            if (state.boostCooldown && state.boostEnergy < 100) {
-                state.boostEnergy += 0.5;
+                // Exit cooldown when fully recharged
+                if (state.boostEnergy >= 100) {
+                    state.boostEnergy = 100;
+                    state.boostCooldown = false;
+                }
+            } else {
+                // Can activate if bar is full
+                if (state.keys.shift && state.boostEnergy >= 100) {
+                    state.boostActive = true;
+                } else if (state.boostEnergy < 100) {
+                    // Passively recharge when not in use (~8 seconds)
+                    state.boostEnergy += 0.21;
+                    if (state.boostEnergy > 100) state.boostEnergy = 100;
+                }
             }
 
             const speedRatio = Math.min(1, Math.abs(state.speed) / (200 / 80));
-            const steerSensitivity = CONFIG.turnSpeed * (1.2 - speedRatio * 0.5);
+            const steerSensitivity = CONFIG.turnSpeed * (1.0 - speedRatio * 0.6);
             const directionMult = state.speed < -0.1 ? -1 : 1;
 
             if (Math.abs(state.speed) > 0.05) {
@@ -1893,7 +2320,6 @@
             const currentCheck = state.checkpoints[state.nextCheckpoint];
             if (carPos.distanceTo(currentCheck) < 30) {
                 state.nextCheckpoint = (state.nextCheckpoint + 1) % state.checkpoints.length;
-                // we just wrapped back to start/finish when nextCheckpoint became 0
                 if (state.nextCheckpoint === 0) {
                     const now = Date.now();
                     if (state.lapStartTime > 0) {
@@ -1909,6 +2335,7 @@
             }
         }
 
+
         function updateAICars() {
             if (!trackCurve) return;
             if (!state.gameActive) return;
@@ -1919,61 +2346,131 @@
             const side = new THREE.Vector3();
             const now = Date.now();
 
-            // Define straight sections for DRS (t values where straights are)
-            const drsZones = [
-                { start: 0.0, end: 0.15 },   // Start/finish straight
-                { start: 0.45, end: 0.55 }   // Back straight
-            ];
-
             state.aiCars.forEach((car, index) => {
+                const carName = `CAR ${index + 1}`;
+                const pitBoxIndex = index; // AI cars use boxes 0-13 (player is 14)
                 const prevT = car.t;
 
-                // Check if in DRS zone
-                const inDrsZone = drsZones.some(zone => car.t >= zone.start && car.t <= zone.end);
-
-                // AI DRS logic
-                if (car.drsCooldown && now >= car.drsCooldownEnd) {
-                    car.drsCooldown = false;
+                // Initialize car state if not set
+                if (car.tireHealth === undefined) {
+                    car.tireHealth = 100;
+                    car.pitState = 'racing'; // racing, entering, inBox, exiting
+                    car.pitStartTime = 0;
+                    car.hasPittedThisLap = false;
+                    car.pitBoxTarget = PIT_LANE.boxes[pitBoxIndex];
                 }
 
-                if (inDrsZone && car.drsEnergy > 15 && !car.drsCooldown) {
+                // AI tire wear - faster wear so they need to pit
+                if (car.pitState === 'racing') {
+                    car.tireHealth -= CONFIG.tireWearRate * 1.5;
+                    if (car.tireHealth < 0) car.tireHealth = 0;
+                }
+
+                // Calculate tire penalty
+                const aiTirePenalty = 1 - ((100 - car.tireHealth) / 100) * 0.4;
+
+                // AI pit decision - need to pit when tires low
+                const needsPit = car.tireHealth < 35 && !car.hasPittedThisLap;
+                // Position-based pit entry detection - extended pit lane entry is at z=180
+                const carZ = car.mesh.position.z;
+                const carX = car.mesh.position.x;
+                const nearPitEntry = carZ > 60 && carZ < 150 && Math.abs(carX) < 15;
+
+                // State machine for pit stop
+                if (car.pitState === 'racing') {
+                    if (needsPit && nearPitEntry) {
+                        car.pitState = 'entering';
+                        addPitLogMessage(carName, 'entering');
+                    }
+                }
+
+                // Handle pit lane behavior
+                if (car.pitState === 'entering') {
+                    // Drive toward pit box
+                    const targetX = PIT_LANE.offsetX;
+                    const targetZ = car.pitBoxTarget.z;
+
+                    // Move car toward pit box
+                    const dx = targetX - car.mesh.position.x;
+                    const dz = targetZ - car.mesh.position.z;
+                    const dist = Math.sqrt(dx * dx + dz * dz);
+
+                    if (dist > 2) {
+                        const moveSpeed = 0.3;
+                        car.mesh.position.x += (dx / dist) * moveSpeed;
+                        car.mesh.position.z += (dz / dist) * moveSpeed;
+                        car.mesh.rotation.y = Math.atan2(dx, dz);
+                    } else {
+                        // Arrived at pit box
+                        car.pitState = 'inBox';
+                        car.pitStartTime = now;
+                    }
+                    return; // Skip normal movement
+                }
+
+                if (car.pitState === 'inBox') {
+                    const pitElapsed = now - car.pitStartTime;
+                    if (pitElapsed >= CONFIG.pitStopTime) {
+                        car.pitState = 'exiting';
+                        car.tireHealth = 100;
+                        car.hasPittedThisLap = true;
+                        addPitLogMessage(carName, 'leaving');
+                    }
+                    return; // Stay in box
+                }
+
+                if (car.pitState === 'exiting') {
+                    // Drive back to track
+                    const targetT = 0.02; // Rejoin point
+                    trackCurve.getPointAt(targetT, pos);
+
+                    const dx = pos.x - car.mesh.position.x;
+                    const dz = pos.z - car.mesh.position.z;
+                    const dist = Math.sqrt(dx * dx + dz * dz);
+
+                    if (dist > 3) {
+                        const moveSpeed = 0.4;
+                        car.mesh.position.x += (dx / dist) * moveSpeed;
+                        car.mesh.position.z += (dz / dist) * moveSpeed;
+                        car.mesh.rotation.y = Math.atan2(dx, dz);
+                    } else {
+                        // Back on track
+                        car.pitState = 'racing';
+                        car.t = targetT;
+                    }
+                    return; // Skip normal movement
+                }
+
+                // Normal racing behavior - AI DRS with 8 second cooldown
+                const timeSinceLastDrs = now - car.lastDrsTime;
+                if (timeSinceLastDrs >= 8000) {
                     car.drsActive = true;
-                    car.drsEnergy -= 1.0;
-                    car.speed = car.baseSpeed * 1.2;  // 20% boost
+                    if (timeSinceLastDrs >= 8000 + car.drsDuration) {
+                        car.drsActive = false;
+                        car.lastDrsTime = now;
+                    }
                 } else {
                     car.drsActive = false;
-                    car.speed = car.baseSpeed;
-
-                    // Recharge when not using
-                    if (!car.drsCooldown && car.drsEnergy < 100) {
-                        car.drsEnergy += 0.3;
-                    }
-
-                    // Cooldown trigger
-                    if (car.drsEnergy <= 10 && !car.drsCooldown) {
-                        car.drsCooldown = true;
-                        car.drsCooldownEnd = now + 3000; // 3 second cooldown
-                        car.drsEnergy = 0;
-                    }
                 }
 
-                // Recharge during cooldown
-                if (car.drsCooldown && car.drsEnergy < 100) {
-                    car.drsEnergy += 0.5;
+                let speedMultiplier = aiTirePenalty;
+                if (car.drsActive) {
+                    speedMultiplier *= 1.15; // Reduced from 1.2
                 }
+                car.speed = car.baseSpeed * speedMultiplier;
 
                 car.t = (car.t + car.speed) % 1;
 
                 if (prevT > 0.9 && car.t < 0.1) {
                     car.lap++;
+                    car.hasPittedThisLap = false; // Can pit again next lap
                     if (car.lap >= CONFIG.lapsToWin) {
-                        maybeFinishRace(`CAR ${index + 1}`);
+                        maybeFinishRace(carName);
                     }
                 }
 
                 trackCurve.getPointAt(car.t, pos);
                 trackCurve.getTangentAt(car.t, tangent);
-
                 side.crossVectors(tangent, up).normalize();
 
                 const finalPos = new THREE.Vector3().copy(pos)
@@ -2100,6 +2597,495 @@
             }
         }
 
+        // ============ TIRE WEAR SYSTEM ============
+
+        // Pit lane configuration - separate lane that branches off main track
+        // The pit lane runs parallel to the main straight on the right side
+        // Expanded for 15 cars
+        const PIT_LANE = {
+            // Entry point (where cars leave main track)
+            entryZ: 180,     // Start diverging much earlier
+            exitZ: -180,     // Rejoin track much later
+
+            // Pit lane position (offset from main track)
+            offsetX: 25,     // How far right of center
+            laneWidth: 10,   // Slightly wider
+
+            boxes: [],       // Will be populated below
+            boxLength: 15,
+            boxWidth: 6
+        };
+
+        // Generate 15 pit boxes dynamically
+        for (let i = 0; i < 15; i++) {
+            // Player is last (index 14)
+            const isPlayer = i === 14;
+            const name = isPlayer ? 'YOU' : `CAR ${i + 1}`;
+            // Generate unique colors using golden angle
+            const hue = isPlayer ? 0 : (i * 137.5) % 360;
+            const color = isPlayer ? '#ff0000' : `hsl(${hue}, 100%, 50%)`;
+
+            PIT_LANE.boxes.push({
+                name: name,
+                z: 140 - (i * 20),  // Start from +140 down to -140
+                color: color
+            });
+        }
+
+
+        // Check if position is in pit lane
+
+        function isInPitLane(x, z) {
+            // Check if in the pit lane corridor
+            const inPitX = x >= PIT_LANE.offsetX - PIT_LANE.laneWidth / 2 &&
+                x <= PIT_LANE.offsetX + PIT_LANE.laneWidth / 2;
+            const inPitZ = z <= PIT_LANE.entryZ && z >= PIT_LANE.exitZ;
+            return inPitX && inPitZ;
+        }
+
+        // Find which pit box a position is in (returns box index or -1)
+        function getPitBoxIndex(x, z) {
+            for (let i = 0; i < PIT_LANE.boxes.length; i++) {
+                const box = PIT_LANE.boxes[i];
+                const inBoxX = x >= PIT_LANE.offsetX - PIT_LANE.boxWidth / 2 &&
+                    x <= PIT_LANE.offsetX + PIT_LANE.boxWidth / 2;
+                const inBoxZ = z >= box.z - PIT_LANE.boxLength / 2 &&
+                    z <= box.z + PIT_LANE.boxLength / 2;
+                if (inBoxX && inBoxZ) return i;
+            }
+            return -1;
+        }
+
+        function addPitLogMessage(carName, action) {
+            const pitLog = document.getElementById('pit-log');
+            pitLog.classList.add('visible');
+
+            const msg = document.createElement('div');
+            msg.className = `pit-message ${action}`;
+            msg.textContent = action === 'entering'
+                ? `🔧 ${carName} ENTERS PIT`
+                : `✅ ${carName} LEAVES PIT`;
+
+            pitLog.appendChild(msg);
+
+            // Remove message after animation
+            setTimeout(() => {
+                msg.remove();
+                if (pitLog.children.length === 0) {
+                    pitLog.classList.remove('visible');
+                }
+            }, 4000);
+        }
+
+        function updateTireWear() {
+            if (!state.gameActive || state.isPitting) return;
+
+            const speedRatio = Math.abs(state.speed) / (CONFIG.maxSpeed / 80);
+            const isTurning = state.keys.a || state.keys.d;
+            const isBraking = state.keys.s || state.keys.space;
+
+            // Base wear rate increases with speed
+            let wearRate = CONFIG.tireWearRate * speedRatio;
+
+            // Extra wear when turning hard at speed
+            if (isTurning && speedRatio > 0.3) {
+                wearRate *= 1.5;
+            }
+
+            // Extra wear when braking hard
+            if (isBraking && speedRatio > 0.3) {
+                wearRate *= 1.3;
+            }
+
+            // Apply wear to all tires (rear tires wear slightly faster)
+            state.tireHealth.fl = Math.max(0, state.tireHealth.fl - wearRate * 0.9);
+            state.tireHealth.fr = Math.max(0, state.tireHealth.fr - wearRate * 0.9);
+            state.tireHealth.rl = Math.max(0, state.tireHealth.rl - wearRate * 1.1);
+            state.tireHealth.rr = Math.max(0, state.tireHealth.rr - wearRate * 1.1);
+
+            // Check for tire burst (only in 15+ lap races)
+            if (CONFIG.tireBurstEnabled) {
+                const minTire = Math.min(
+                    state.tireHealth.fl, state.tireHealth.fr,
+                    state.tireHealth.rl, state.tireHealth.rr
+                );
+                if (minTire <= 0 && !state.tireBurst) {
+                    handleTireBurst();
+                }
+            }
+        }
+
+        function handleTireBurst() {
+            state.tireBurst = true;
+            state.gameActive = false;
+
+            const loading = document.getElementById('loading');
+            loading.style.display = 'block';
+            loading.innerText = '💥 TIRE BURST!\nDISQUALIFIED\n\nYou should have pitted!';
+        }
+
+        function getAverageTireHealth() {
+            return (state.tireHealth.fl + state.tireHealth.fr +
+                state.tireHealth.rl + state.tireHealth.rr) / 4;
+        }
+
+        function getTireSpeedPenalty() {
+            const avgHealth = getAverageTireHealth();
+            // At 100% health = no penalty, at 0% health = 50% speed reduction
+            return 1 - ((100 - avgHealth) / 100) * 0.5;
+        }
+
+        function checkPitLane() {
+            if (!carMesh || !state.gameActive) return;
+
+            const pos = carMesh.position;
+            const inPitLane = isInPitLane(pos.x, pos.z);
+            const pitBoxIndex = getPitBoxIndex(pos.x, pos.z);
+            const inOwnBox = pitBoxIndex === 14; // Player's box is index 14 (last)
+
+            const pitIndicator = document.getElementById('pit-indicator');
+
+            if (inPitLane && !state.inPitLane) {
+                state.inPitLane = true;
+                pitIndicator.style.display = 'block';
+                if (inOwnBox) {
+                    pitIndicator.textContent = 'YOUR PIT BOX - HOLD P TO PIT';
+                } else {
+                    pitIndicator.textContent = 'PIT LANE - DRIVE TO YOUR BOX';
+                }
+                addPitLogMessage('YOU', 'entering');
+            } else if (!inPitLane && state.inPitLane) {
+                if (state.isPitting) {
+                    state.isPitting = false;
+                }
+                state.inPitLane = false;
+                pitIndicator.style.display = 'none';
+                pitIndicator.classList.remove('changing');
+                addPitLogMessage('YOU', 'leaving');
+            } else if (inPitLane && state.inPitLane && !state.isPitting) {
+                // Update message based on position
+                if (inOwnBox) {
+                    pitIndicator.textContent = 'YOUR PIT BOX - HOLD P TO PIT';
+                } else if (pitBoxIndex >= 0) {
+                    pitIndicator.textContent = `${PIT_LANE.boxes[pitBoxIndex].name}'S BOX - NOT YOURS`;
+                } else {
+                    pitIndicator.textContent = 'PIT LANE - DRIVE TO YOUR BOX';
+                }
+            }
+
+            // Handle pit stop - only in own box
+            if (inOwnBox && state.keys.p && !state.isPitting) {
+                startPitStop('YOU');
+            }
+
+            // Check pit stop completion
+            if (state.isPitting) {
+                const elapsed = Date.now() - state.pitStartTime;
+                if (elapsed >= CONFIG.pitStopTime) {
+                    completePitStop('YOU');
+                }
+            }
+        }
+
+        function startPitStop(carName) {
+            if (carName === 'YOU') {
+                state.isPitting = true;
+                state.pitStartTime = Date.now();
+                state.speed = 0;
+
+                const pitIndicator = document.getElementById('pit-indicator');
+                pitIndicator.classList.add('changing');
+                pitIndicator.textContent = 'CHANGING TIRES...';
+            }
+        }
+
+        function completePitStop(carName) {
+            if (carName === 'YOU') {
+                state.isPitting = false;
+                state.tireHealth.fl = 100;
+                state.tireHealth.fr = 100;
+                state.tireHealth.rl = 100;
+                state.tireHealth.rr = 100;
+
+                const pitIndicator = document.getElementById('pit-indicator');
+                pitIndicator.classList.remove('changing');
+                pitIndicator.textContent = 'TIRES CHANGED! GO GO GO!';
+            }
+        }
+
+        function updateTireHUD() {
+            const tires = ['fl', 'fr', 'rl', 'rr'];
+            const warning = document.getElementById('tire-warning');
+            let showWarning = false;
+
+            tires.forEach(tire => {
+                const indicator = document.getElementById(`tire-${tire}`);
+                const fill = indicator.querySelector('.tire-fill');
+                const health = state.tireHealth[tire];
+
+                fill.style.height = `${health}%`;
+
+                // Update visual state
+                indicator.classList.remove('warning', 'critical', 'burst');
+                if (health <= 0) {
+                    indicator.classList.add('burst');
+                } else if (health < 20) {
+                    indicator.classList.add('critical');
+                    showWarning = true;
+                } else if (health < 40) {
+                    indicator.classList.add('warning');
+                }
+            });
+
+            // Show warning for critical tires
+            if (showWarning && state.gameActive && CONFIG.tireBurstEnabled) {
+                warning.style.display = 'block';
+            } else {
+                warning.style.display = 'none';
+            }
+        }
+
+        // ============ RACE MENU SYSTEM ============
+
+        function setupRaceMenu() {
+            const raceMenu = document.getElementById('race-menu');
+            const lapOptions = document.getElementById('lap-options');
+            const diffOptions = document.getElementById('diff-options');
+            const tireNote = document.getElementById('tire-note');
+            const startBtn = document.getElementById('start-race-btn');
+
+            // Lap selection
+            lapOptions.addEventListener('click', (e) => {
+                if (e.target.classList.contains('menu-btn')) {
+                    lapOptions.querySelectorAll('.menu-btn').forEach(btn => btn.classList.remove('selected'));
+                    e.target.classList.add('selected');
+
+                    const laps = parseInt(e.target.dataset.laps);
+                    CONFIG.lapsToWin = laps;
+
+                    // Update tire note based on race length
+                    if (laps >= 15) {
+                        CONFIG.tireBurstEnabled = true;
+                        tireNote.textContent = '⚠️ Tire burst possible! Pit stops required.';
+                        tireNote.style.color = '#ff6666';
+                    } else {
+                        CONFIG.tireBurstEnabled = false;
+                        tireNote.textContent = 'Tire wear affects speed. No tire burst risk.';
+                        tireNote.style.color = '#888';
+                    }
+                }
+            });
+
+            // Difficulty selection
+            diffOptions.addEventListener('click', (e) => {
+                if (e.target.classList.contains('menu-btn')) {
+                    diffOptions.querySelectorAll('.menu-btn').forEach(btn => btn.classList.remove('selected'));
+                    e.target.classList.add('selected');
+                    AI_DIFFICULTY = e.target.dataset.diff;
+                }
+            });
+
+            // Start race button
+            startBtn.addEventListener('click', () => {
+                raceMenu.style.display = 'none';
+                document.getElementById('loading').style.display = 'none';
+                initRace();
+            });
+        }
+
+        function initRace() {
+            buildTrack();
+            createEnvironment();
+            createCar();
+            positionPlayerOnGrid();
+            createAICars();
+            createPitLane();
+
+            // Reset tire health
+            state.tireHealth = { fl: 100, fr: 100, rl: 100, rr: 100 };
+            state.tireBurst = false;
+            state.inPitLane = false;
+            state.isPitting = false;
+
+            startCountdown();
+        }
+
+        function createPitLane() {
+            const pitGroup = new THREE.Group();
+
+            // 1. Main pit lane road surface
+            const laneLength = PIT_LANE.entryZ - PIT_LANE.exitZ;
+            const laneGeom = new THREE.PlaneGeometry(PIT_LANE.laneWidth, laneLength);
+
+            const laneMat = new THREE.MeshStandardMaterial({
+                color: 0x444444,
+                roughness: 0.9
+            });
+
+            const laneMesh = new THREE.Mesh(laneGeom, laneMat);
+            laneMesh.rotation.x = -Math.PI / 2;
+            laneMesh.position.set(
+                PIT_LANE.offsetX,
+                0.06,
+                (PIT_LANE.entryZ + PIT_LANE.exitZ) / 2
+            );
+            pitGroup.add(laneMesh);
+
+            // 2. Pit entry connector (diagonal from track to pit lane)
+            const entryGeom = new THREE.PlaneGeometry(20, 6);
+            const entryMat = new THREE.MeshStandardMaterial({ color: 0x555555, roughness: 0.9 });
+            const entryMesh = new THREE.Mesh(entryGeom, entryMat);
+            entryMesh.rotation.x = -Math.PI / 2;
+            entryMesh.rotation.z = Math.PI / 6; // Angled
+            entryMesh.position.set(
+                PIT_LANE.offsetX / 2,
+                0.06,
+                PIT_LANE.entryZ - 10
+            );
+            pitGroup.add(entryMesh);
+
+            // 3. Pit exit connector
+            const exitGeom = new THREE.PlaneGeometry(20, 6);
+            const exitMesh = new THREE.Mesh(exitGeom, entryMat);
+            exitMesh.rotation.x = -Math.PI / 2;
+            exitMesh.rotation.z = -Math.PI / 6;
+            exitMesh.position.set(
+                PIT_LANE.offsetX / 2,
+                0.06,
+                PIT_LANE.exitZ + 10
+            );
+            pitGroup.add(exitMesh);
+
+            // 4. Speed limit line at entry
+            const lineGeom = new THREE.PlaneGeometry(PIT_LANE.laneWidth, 1);
+            const whiteMat = new THREE.MeshBasicMaterial({ color: 0xffffff });
+            const entryLine = new THREE.Mesh(lineGeom, whiteMat);
+            entryLine.rotation.x = -Math.PI / 2;
+            entryLine.position.set(PIT_LANE.offsetX, 0.08, PIT_LANE.entryZ - 5);
+            pitGroup.add(entryLine);
+
+            // 5. Individual pit boxes for each car
+            PIT_LANE.boxes.forEach((box, index) => {
+                // Box background
+                const boxGeom = new THREE.PlaneGeometry(PIT_LANE.boxWidth, PIT_LANE.boxLength);
+
+                // Create canvas for box texture
+                const boxCanvas = document.createElement('canvas');
+                boxCanvas.width = 128;
+                boxCanvas.height = 256;
+                const ctx = boxCanvas.getContext('2d');
+
+                // Box color
+                ctx.fillStyle = box.color;
+                ctx.fillRect(0, 0, 128, 256);
+
+                // Border
+                ctx.strokeStyle = '#ffffff';
+                ctx.lineWidth = 8;
+                ctx.strokeRect(4, 4, 120, 248);
+
+                // Car name
+                ctx.fillStyle = '#ffffff';
+                ctx.font = 'bold 28px Arial';
+                ctx.textAlign = 'center';
+                ctx.fillText(box.name, 64, 140);
+
+                // PIT number
+                ctx.font = 'bold 40px Arial';
+                ctx.fillText(`P${index + 1}`, 64, 200);
+
+                const boxTexture = new THREE.CanvasTexture(boxCanvas);
+                const boxMat = new THREE.MeshBasicMaterial({ map: boxTexture });
+
+                const boxMesh = new THREE.Mesh(boxGeom, boxMat);
+                boxMesh.rotation.x = -Math.PI / 2;
+                boxMesh.position.set(
+                    PIT_LANE.offsetX,
+                    0.1,
+                    box.z
+                );
+                pitGroup.add(boxMesh);
+
+                // Add side marker
+                const markerGeom = new THREE.BoxGeometry(0.5, 1.5, 0.5);
+                const markerMat = new THREE.MeshBasicMaterial({ color: box.color });
+                const marker = new THREE.Mesh(markerGeom, markerMat);
+                marker.position.set(
+                    PIT_LANE.offsetX - PIT_LANE.boxWidth / 2 - 0.5,
+                    0.75,
+                    box.z
+                );
+                pitGroup.add(marker);
+            });
+
+            // 6. Pit lane wall
+            const wallGeom = new THREE.BoxGeometry(0.3, 1, laneLength);
+            const wallMat = new THREE.MeshStandardMaterial({ color: 0x888888 });
+            const wall = new THREE.Mesh(wallGeom, wallMat);
+            wall.position.set(
+                PIT_LANE.offsetX + PIT_LANE.laneWidth / 2 + 0.2,
+                0.5,
+                (PIT_LANE.entryZ + PIT_LANE.exitZ) / 2
+            );
+            pitGroup.add(wall);
+
+            // 7. PIT ENTRY markers on main track (so player knows where to turn)
+            const pitEntryCanvas = document.createElement('canvas');
+            pitEntryCanvas.width = 256;
+            pitEntryCanvas.height = 128;
+            const peCtx = pitEntryCanvas.getContext('2d');
+
+            // Orange background
+            peCtx.fillStyle = '#ff6600';
+            peCtx.fillRect(0, 0, 256, 128);
+
+            // Arrow and text
+            peCtx.fillStyle = '#ffffff';
+            peCtx.font = 'bold 48px Arial';
+            peCtx.textAlign = 'center';
+            peCtx.fillText('PIT →', 128, 75);
+
+            const pitEntryTex = new THREE.CanvasTexture(pitEntryCanvas);
+            const pitEntryMat = new THREE.MeshBasicMaterial({ map: pitEntryTex });
+
+            // Place markers on track near pit entry
+            for (let z = PIT_LANE.entryZ; z >= PIT_LANE.entryZ - 40; z -= 20) {
+                const markerGeom = new THREE.PlaneGeometry(8, 4);
+                const marker = new THREE.Mesh(markerGeom, pitEntryMat);
+                marker.rotation.x = -Math.PI / 2;
+                marker.position.set(8, 0.15, z);
+                pitGroup.add(marker);
+            }
+
+            // 8. Pit entry post/sign
+            const postGeom = new THREE.BoxGeometry(0.5, 3, 0.5);
+            const postMat = new THREE.MeshBasicMaterial({ color: 0xff6600 });
+            const post = new THREE.Mesh(postGeom, postMat);
+            post.position.set(12, 1.5, PIT_LANE.entryZ);
+            pitGroup.add(post);
+
+            // Sign on post
+            const signGeom = new THREE.BoxGeometry(4, 1.5, 0.2);
+            const signCanvas = document.createElement('canvas');
+            signCanvas.width = 256;
+            signCanvas.height = 96;
+            const sCtx = signCanvas.getContext('2d');
+            sCtx.fillStyle = '#ff6600';
+            sCtx.fillRect(0, 0, 256, 96);
+            sCtx.fillStyle = '#ffffff';
+            sCtx.font = 'bold 56px Arial';
+            sCtx.textAlign = 'center';
+            sCtx.fillText('PIT', 128, 65);
+
+            const signTex = new THREE.CanvasTexture(signCanvas);
+            const signMat = new THREE.MeshBasicMaterial({ map: signTex });
+            const sign = new THREE.Mesh(signGeom, signMat);
+            sign.position.set(12, 2.5, PIT_LANE.entryZ);
+            pitGroup.add(sign);
+
+            scene.add(pitGroup);
+        }
+
         window.addEventListener('keydown', (e) => {
             const key = e.key.toLowerCase();
             if (state.keys.hasOwnProperty(key)) state.keys[key] = true;
@@ -2171,18 +3157,9 @@
         }
 
         function init() {
-            const diff = prompt("AI difficulty: easy, medium, hard", AI_DIFFICULTY);
-            if (diff && AI_SPEEDS[diff]) {
-                AI_DIFFICULTY = diff;
-            }
-
-            buildTrack();
-            createEnvironment();
-            createCar();
-            positionPlayerOnGrid();
-            createAICars();
-
-            startCountdown();
+            // Hide loading and show race menu
+            document.getElementById('loading').style.display = 'none';
+            setupRaceMenu();
             animate();
         }
 
@@ -2205,6 +3182,11 @@
             updateEngineSound();
             updateTireSound();
 
+            // Tire system
+            updateTireWear();
+            checkPitLane();
+            updateTireHUD();
+
             // Particle effects
             emitTireSmoke();
             emitSkidMarks();
@@ -2216,6 +3198,79 @@
 
         init();
     </script>
+
+</body>
+
+</html>
+state.raceFinished = false;
+state.lap = 0;
+state.nextCheckpoint = 1;
+document.getElementById('lap-val').innerText = `0 / ${CONFIG.lapsToWin}`;
+
+state.aiCars.forEach(car => { car.lap = 0; });
+
+let step = 3;
+loading.style.display = 'block';
+loading.innerText = `Difficulty: ${AI_DIFFICULTY.toUpperCase()}\nRace to ${CONFIG.lapsToWin} laps\n${step}`;
+
+const interval = setInterval(() => {
+step--;
+if (step > 0) {
+loading.innerText = `Difficulty: ${AI_DIFFICULTY.toUpperCase()}\nRace to ${CONFIG.lapsToWin} laps\n${step}`;
+} else if (step === 0) {
+loading.innerText = 'GO!';
+} else {
+clearInterval(interval);
+loading.style.display = 'none';
+state.gameActive = true;
+state.countdownActive = false;
+state.lapStartTime = Date.now();
+}
+}, 1000);
+}
+
+function init() {
+// Hide loading and show race menu
+document.getElementById('loading').style.display = 'none';
+setupRaceMenu();
+animate();
+}
+
+let lastFrameTime = performance.now();
+
+function animate() {
+requestAnimationFrame(animate);
+
+// Calculate delta time for particle physics
+const now = performance.now();
+const deltaTime = (now - lastFrameTime) / 1000;
+lastFrameTime = now;
+
+handleInput();
+updatePhysics();
+updateAICars();
+updateCamera();
+updateHUD();
+updateBoostHUD();
+updateEngineSound();
+updateTireSound();
+
+// Tire system
+updateTireWear();
+checkPitLane();
+updateTireHUD();
+
+// Particle effects
+emitTireSmoke();
+emitSkidMarks();
+updateParticles(deltaTime);
+updateSpeedLines();
+
+renderer.render(scene, camera);
+}
+
+init();
+</script>
 
 </body>
 
